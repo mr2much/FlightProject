@@ -5,18 +5,26 @@ import com.lockward.anubis.Person;
 public class Passenger extends Person implements Comparable<Passenger> {
     private int checkedBags;
     private int freeBags;
-    private int memberLevel;
-    private int memberDays;
-    String name;
+
+    public static class RewardProgram {
+        private int memberLevel;
+        private int memberDays;
+
+        public int getLevel() { return memberLevel; }
+        public void setMemberLevel(int level) { memberLevel = level; }
+
+        public int getDays() { return memberDays; }
+        public void setMemberDays(int days) { memberDays = days; }
+    }
+
+    private RewardProgram rewardProgram = new RewardProgram();
 
     public void setLevelAndDays(int level, int days) {
-        setMemberLevel(level);
-        setMemberDays(days);
+        rewardProgram.setMemberLevel(level);
+        rewardProgram.setMemberDays(days);
     }
-    public int getMemberLevel(){ return memberLevel; }
-    public void setMemberLevel(int memberLevel) { this.memberLevel = memberLevel; }
-    public int getMemberDays() { return memberDays; }
-    public void setMemberDays(int memberDays) { this.memberDays = memberDays; }
+
+    public RewardProgram getRewardProgram() { return rewardProgram; }
 
     public Passenger() { }
 
@@ -37,17 +45,17 @@ public class Passenger extends Person implements Comparable<Passenger> {
 
     @Override
     public int compareTo(Passenger p) {
-        if(memberLevel > p.memberLevel ) {
+        if(rewardProgram.getLevel() > p.rewardProgram.getLevel()) {
             return -1;
         }
-        else if (memberLevel < p.memberLevel) {
+        else if (rewardProgram.getLevel() < p.rewardProgram.getLevel()) {
             return 1;
         }
         else {
-            if (memberDays > p.memberDays) {
+            if (rewardProgram.getDays() > p.rewardProgram.getDays()) {
                 return -1;
             }
-            else if (memberDays < p.memberDays) {
+            else if (rewardProgram.getDays() < p.rewardProgram.getDays()) {
                 return 1;
             }
             else {

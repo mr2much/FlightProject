@@ -1,7 +1,7 @@
 package com.lockward.anubis;
 
 public class Person {
-    private String name;
+    protected String name;
 
     public String getName() { return name; }
 

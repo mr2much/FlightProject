@@ -1,7 +1,6 @@
 package com.lockward.anubis.travel;
 
-import com.lockward.anubis.CrewMember;
-import com.lockward.anubis.FlightIterator;
+import com.lockward.anubis.crew.CrewMember;
 import com.lockward.anubis.Person;
 
 import java.io.BufferedReader;
@@ -157,6 +156,23 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
 
     @Override
     public Iterator<Person> iterator() {
-        return new FlightIterator(crew, roster);
+        return new Iterator<Person>() {
+            private int index = 0;
+            @Override
+            public boolean hasNext() {
+                return index < (crew.length + roster.length);
+            }
+
+            @Override
+            public Person next() {
+                Person p = (index < crew.length) ? crew[index] : roster[index - crew.length];
+                index++;
+
+                return p;
+            }
+
+            @Override
+            public void remove() { }
+        };
     }
 }

@@ -1,4 +1,4 @@
-package com.lockward.anubis;
+package com.lockward.anubis.crew;
 
 public enum FlightCrewJob {
     Pilot,

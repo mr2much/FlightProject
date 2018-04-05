@@ -1,4 +1,4 @@
-package com.lockward.anubis;
+package com.lockward.anubis.crew;
 
 import com.lockward.anubis.travel.Flight;
 
